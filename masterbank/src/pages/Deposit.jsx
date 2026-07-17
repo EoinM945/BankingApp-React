@@ -202,8 +202,8 @@ const Deposit = () => {
                                     <h4>Account Information</h4>
                                     <div className="account-details">
                                         <p><strong>Type:</strong> {accountInfo.accountType}</p>
-                                        <p><strong>Balance:</strong> {formatCurrency(accountInfo.balance, accountInfo.currency)}</p>
-                                        <p><strong>Status:</strong> <span className={`status ${accountInfo.status.toLowerCase()}`}>{accountInfo.status}</span></p>
+                                        <p><strong>Balance:</strong> {formatCurrency(accountInfo.balance || 0, accountInfo.currency)}</p>
+                                        <p><strong>Status:</strong> <span className={`status ${(accountInfo.status || '').toLowerCase()}`}>{accountInfo.status}</span></p>
                                     </div>
                                 </div>
                             )}

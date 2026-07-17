@@ -58,7 +58,7 @@ const Profile = () => {
             setError(error.response?.data?.message || 'An error occurred while uploading profile picture');
 
         } finally {
-            setLoading(false)
+            setUploading(false)
         }
     }
 
@@ -132,7 +132,7 @@ const Profile = () => {
                     <div className="profile-picture-upload">
                         <div className="profile-picture">
                             <img
-                                src={userData.profilePictureUrl}
+                                src={userData.profilePictureUrl + '?t=' + Date.now()}
                                 alt="Profile"
                             />
                         </div>
@@ -208,11 +208,11 @@ const Profile = () => {
                                     </div>
                                     <div className="account-balance">
                                         <label>Balance</label>
-                                        <p>{account.currency} {account.balance.toFixed(2)}</p>
+                                        <p>{account.currency} {(account.balance || 0).toFixed(2)}</p>
                                     </div>
                                     <div className="account-created">
                                         <label>Created On</label>
-                                        <p>{new Date(account.createdAt).toLocaleDateString()}</p>
+                                        <p>{account.createdAt ? new Date(account.createdAt).toLocaleDateString() : 'N/A'}</p>
                                     </div>
                                 </div>
 

@@ -219,7 +219,7 @@ const Transfer = () => {
                             >
                                 {userAccounts.map(account => (
                                     <option key={account.id} value={account.accountNumber}>
-                                        {account.accountNumber} - {account.accountType} ({account.currency} {account.balance.toFixed(2)})
+                                        {account.accountNumber} - {account.accountType} ({account.currency} {(account.balance || 0).toFixed(2)})
                                     </option>
                                 ))}
                             </select>
@@ -276,7 +276,7 @@ const Transfer = () => {
                                 <div className="balance-check">
                                     <small>
                                         Available: {formatCurrency(
-                                        userAccounts.find(acc => acc.accountNumber === formData.accountNumber)?.balance || 0
+                                        (userAccounts.find(acc => acc.accountNumber === formData.accountNumber)?.balance || 0)
                                     )}
                                     </small>
                                 </div>

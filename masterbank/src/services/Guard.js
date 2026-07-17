@@ -6,7 +6,7 @@ import { apiService } from "./api";
 export const CustomerRoute = ({element: Component}) => {
 
     const location = useLocation();
-    return apiService.isCustomer() ? (
+    return apiService.isCustomer() || apiService.isAdmin() || apiService.isAuditor() ? (
         Component
     ):(
         <Navigate to="/login" replace state={{from: location}}/>
