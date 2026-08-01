@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Masterbank (BankingApp-React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Masterbank is a React single-page application for managing banking customers, accounts, and transactions. It connects to a REST API for authentication, account data, transfers, deposits, and auditor operations.
 
-## Available Scripts
+Key features
 
-In the project directory, you can run:
+- Authentication: register, login, logout, forgot/reset password
+- Role-based access: CUSTOMER, ADMIN, AUDITOR (client-side guards)
+- Profile management: view/update profile, upload profile picture
+- Account operations: view accounts, view transactions, paginated transaction lists
+- Transfers: make inter-account transfers
+- Deposits / Auditor actions: auditor/admin-only deposit and audit dashboards
+- Routing: react-router-dom used for navigation and protected routes
+- API integration: axios instance with token interceptor (src/services/api.js)
 
-### `npm start`
+Quickstart
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Prerequisites
+- Node.js (>= 16 recommended)
+- npm
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install
 
-### `npm test`
+1. Open a terminal in this folder (masterbank)
+2. Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   npm install
 
-### `npm run build`
+Run (development)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open http://localhost:3000 in your browser. The app supports hot reload during development.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Build (production)
 
-### `npm run eject`
+   npm run build
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Tests
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   npm test
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- API base URL is defined in src/services/api.js via the API_BASE_URL constant. Change it to point to your backend when necessary.
+- Auth tokens and roles are stored in localStorage by the apiService. Ensure the backend returns { data: { token, roles } } on login.
 
-## Learn More
+Important files and folders
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- src/services/api.js — axios instance, auth helpers, API methods (login, register, transactions, audit endpoints)
+- src/services/Guard.js — CustomerRoute and AuditorRoute wrappers for protected routes
+- src/pages — page components (Home, Login, Register, Profile, Transactions, Transfer, AuditorDashboard, Deposit, etc.)
+- src/components — shared components (Navbar, Footer)
+- public — static assets and index.html
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Scripts
 
-### Code Splitting
+- npm start — run dev server
+- npm run build — create optimized production build
+- npm test — run test runner
+- npm run eject — eject CRA config (one-way)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Deployment
 
-### Analyzing the Bundle Size
+Build the app with npm run build and serve the /build folder with any static hosting (Netlify, Vercel, S3 + CloudFront, or a traditional web server).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Security notes
 
-### Making a Progressive Web App
+- Client-side role checks are convenience guards — always enforce authorization on the server.
+- Avoid committing secrets into the codebase. Use environment variables or CI/CD secrets for production configuration.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Contribution
 
-### Advanced Configuration
+Contributions welcome. Open an issue or PR with a clear description and tests where applicable.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+License
 
-### Deployment
+Specify project license here (e.g., MIT).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Contact
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+support@masterbank.com
+(https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
